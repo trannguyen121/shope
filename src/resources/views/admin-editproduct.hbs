@@ -1,0 +1,37 @@
+<h1 class="text-center my-4">Chỉnh sửa sản phẩm</h1>
+<div class="container">
+  <form action="/admin/products/edit/{{product.id}}" method="POST" enctype="multipart/form-data" class="shadow-lg p-4 rounded bg-light">
+    <div class="mb-3">
+      <label for="name" class="form-label">Tên sản phẩm:</label>
+      <input type="text" name="name" id="name" class="form-control" value="{{product.name}}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Mô tả:</label>
+      <textarea name="description" id="description" class="form-control" rows="3" required>{{product.description}}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Giá:</label>
+      <input type="number" name="price" id="price" class="form-control" value="{{product.price}}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Số lượng:</label>
+      <input type="number" name="quantity" id="quantity" class="form-control" value="{{product.quantity}}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="category_id" class="form-label">Danh mục:</label>
+      <input type="number" name="category_id" id="category_id" class="form-control" value="{{product.category_id}}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Ảnh sản phẩm:</label>
+      <input type="file" name="image" id="image" class="form-control" accept="image/*">
+      <img src="/uploads/{{product.image}}" alt="{{product.name}}" class="img-thumbnail mt-2" style="max-width: 150px;">
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Cập nhật sản phẩm</button>
+  </form>
+</div>

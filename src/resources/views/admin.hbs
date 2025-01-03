@@ -1,0 +1,31 @@
+<div class="admin-dashboard">
+  <div class="welcome-section">
+    <h1 class="dashboard-title">Admin Dashboard</h1>
+    <p class="welcome-message">Xin chào, <strong>{{user.username}}</strong></p>
+  </div>
+
+  <div class="admin-actions">
+    <ul class="admin-links">
+      <li>
+        <a href="/admin/products" class="btn btn-primary">
+          <i class="fas fa-boxes"></i> Quản lý sản phẩm
+        </a>
+      </li>
+      <li>
+        <a href="/admin/users" class="btn btn-secondary">
+          <i class="fas fa-users"></i> Quản lý người dùng
+        </a>
+      </li>
+      <li>
+        <a href="/admin/orders" class="btn btn-info">
+          <i class="fas fa-shopping-cart"></i> Quản lý đơn hàng
+        </a>
+      </li>
+      <li>
+        <a href="/logout" class="btn btn-danger">
+          <i class="fas fa-sign-out-alt"></i> Đăng xuất
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

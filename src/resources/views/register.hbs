@@ -1,0 +1,38 @@
+<body>
+    <section id="wrapper">
+        <div class="form-box register">
+            <form action="/register" method="POST"> <!-- Gửi dữ liệu đến route /register -->
+                <h1>Registration</h1>
+                <div class="input-box">
+                    <input type="text" name="username" placeholder="Username" required> <!-- Thêm name="username" -->
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" placeholder="Email" required> <!-- Thêm name="email" -->
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" placeholder="Password" required> <!-- Thêm name="password" -->
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox" name="terms" required> I agree to the terms & conditions</label>
+                </div>
+                <button type="submit" class="normal">Register</button>
+                <div class="register-link">
+                    <p>Already have an Account? <a href="/login">Login</a></p> <!-- Điều hướng đến trang login -->
+                </div>
+            </form>
+        </div>
+    </section>
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get E-mail updates about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button class="normal">Sign up</button>
+        </div>
+    </section>
+</body>

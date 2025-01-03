@@ -1,0 +1,38 @@
+<h1 class="text-center my-4">Thêm sản phẩm mới</h1>
+<div class="container">
+  <form action="/admin/add" method="POST" enctype="multipart/form-data" class="shadow-lg p-4 rounded bg-light">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="name" class="form-label">Tên sản phẩm:</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Nhập tên sản phẩm" required>
+      </div>
+      <div class="col-md-6">
+        <label for="price" class="form-label">Giá:</label>
+        <input type="number" name="price" id="price" class="form-control" placeholder="Nhập giá sản phẩm" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="quantity" class="form-label">Số lượng:</label>
+        <input type="number" name="quantity" id="quantity" class="form-control" placeholder="Nhập số lượng sản phẩm" required>
+      </div>
+      <div class="col-md-6">
+        <label for="category_id" class="form-label">Danh mục:</label>
+        <input type="number" name="category_id" id="category_id" class="form-control" placeholder="Nhập ID danh mục" required>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Mô tả:</label>
+      <textarea name="description" id="description" class="form-control" rows="4" placeholder="Nhập mô tả sản phẩm" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Ảnh sản phẩm:</label>
+      <input type="file" name="image" id="image" class="form-control" accept="image/*" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 mt-3">Thêm sản phẩm</button>
+  </form>
+</div>

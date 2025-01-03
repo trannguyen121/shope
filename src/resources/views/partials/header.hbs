@@ -1,0 +1,23 @@
+<header id="header">
+    <a href="/"><img src="/img/logo.png" class="logo" alt="Logo"></a>
+    <ul id="navbar">
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/cart"><i class="fa-solid fa-bag-shopping"></i></a></li>
+        {{#if user}}
+            <li>
+                {{#if (eq user.role "admin")}}
+                    <a href="/admin"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</a>
+                {{else}}
+                    <a href="/profile"><i class="fa-solid fa-user"></i> {{user.username}}</a>
+                {{/if}}
+            </li>
+            <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        {{else}}
+            <li><a href="/login"><i class="fa-solid fa-user"></i> Login</a></li>
+        {{/if}}
+    </ul>
+</header>

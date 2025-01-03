@@ -1,0 +1,73 @@
+<body>
+    <section id="prodetails" class="section-p1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="single-pro-img">
+                        <img src="/uploads/{{product.mainImage}}" alt="{{product.name}}" id="MainImg" width="100%">
+                        <div class="small-img-group">
+                            {{#each product.images}}
+                            <div class="col-sm-3">
+                                <img src="{{this}}" alt="{{../product.name}}" class="small-img" width="100%">
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="single-pro-details">
+                        <h6>{{product.category}}</h6>
+                        <h4>{{product.name}}</h4>
+                        <h2>${{product.price}}</h2>
+                        <form action="/cart/add/{{product.slug}}" method="POST">
+                            <select name="size" required>
+                                <option value="" disabled selected>Select Size</option>
+                                {{#each product.sizes}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                            <input type="number" name="quantity" value="1" min="1">
+                            <button type="submit" class="normal">Add To Cart</button>
+                        </form>
+                        <h4>Product Details</h4>
+                        <span>{{product.description}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2>New Arrivals</h2>
+        <p>Summer Collection New Modern Design</p>
+        <div class="prod-cont">
+            {{#each newArrivals}}
+            <div class="prod" onclick="window.location.href='/sproduct/{{this.slug}}';">
+                <img src="/uploads/{{this.image}}" alt="{{this.name}}">
+                <div class="des">
+                    <span>{{this.brand}}</span>
+                    <h5>{{this.name}}</h5>
+                    <div class="star">
+                        {{#times this.rating}}
+                        <i class="fas fa-star"></i>
+                        {{/times}}
+                    </div>
+                    <h4>${{this.price}}</h4>
+                </div>
+                <a href="/cart/add/{{this.slug}}"><i class="fa-solid fa-cart-shopping cart"></i></a>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get E-mail updates about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button class="normal">Sign up</button>
+        </div>
+    </section>
+</body>

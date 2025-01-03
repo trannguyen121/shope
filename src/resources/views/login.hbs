@@ -1,0 +1,38 @@
+<body>
+    <section id="wrapper">
+        <div class="form-box login">
+            <form action="/login" method="POST"> <!-- Gửi dữ liệu tới route /login -->
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="email" name="email" placeholder="Email" required> <!-- Thêm name="email" -->
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" placeholder="Password" required> <!-- Thêm name="password" -->
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox" name="remember">Remember Me</label>
+                    <a href="#">Forgot Password</a>
+                </div>
+                <button type="submit" class="normal">Login</button>
+                {{#if error}}
+                <p style="color: red;">{{error}}</p> <!-- Hiển thị lỗi nếu có -->
+                {{/if}}
+                <div class="register-link">
+                    <p>Don't have an Account? <a href="/register">Register</a></p> <!-- Điều hướng đến trang đăng ký -->
+                </div>
+            </form>
+        </div>
+    </section>
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get E-mail updates about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button class="normal">Sign up</button>
+        </div>
+    </section>
+</body>

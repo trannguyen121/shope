@@ -1,0 +1,138 @@
+<section id="cart" class="section-p1">
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>Remove</td>
+                <td>Image</td>
+                <td>Product</td>
+                <td>Size</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Subtotal</td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if cartItems.length}}
+                {{#each cartItems}}
+                <tr>
+                    <td>
+                        <a href="/cart/remove/{{this.slug}}?size={{this.size}}">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <img src="{{#if this.image}}/uploads/{{this.image}}{{else}}/images/default.jpg{{/if}}" 
+                             alt="{{this.name}}" style="width: 70px; height: auto;">
+                    </td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.size}}</td>
+                    <td>${{this.price}}</td>
+                    <td>
+                        <input type="number" 
+                               value="{{this.quantity}}" 
+                               data-id="{{this.slug}}" 
+                               data-size="{{this.size}}"
+                               class="update-quantity"
+                               min="1">
+                    </td>
+                    <td>${{this.subtotal}}</td>
+                </tr>
+                {{/each}}
+            {{else}}
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 20px;">Your cart is empty.</td>
+                </tr>
+            {{/if}}
+        </tbody>
+    </table>
+</section>
+
+<section id="cart-add" class="section-p1">
+    <div class="coupon">
+        <h3>Apply Coupon</h3>
+        <div>
+            <input type="text" placeholder="Enter Your Coupon" id="coupon-code">
+            <button class="normal" id="apply-coupon">Apply</button>
+        </div>
+    </div>
+
+    <div class="subtotal">
+        <h3>Cart Total</h3>
+        <table>
+            <tr>
+                <td>Cart Subtotal</td>
+                <td>${{cartTotal}}</td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>Free</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>${{cartTotal}}</strong></td>
+            </tr>
+        </table>
+        <button class="normal" onclick="window.location.href='/checkout';">Proceed to checkout</button>
+    </div>
+</section>
+
+<script>
+    // Xử lý cập nhật số lượng sản phẩm
+    const quantityInputs = document.querySelectorAll('.update-quantity');
+    quantityInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+            const productId = e.target.dataset.id;
+            const size = e.target.dataset.size;
+            const quantity = e.target.value;
+
+            if (quantity < 1) {
+                alert('Quantity must be at least 1.');
+                return;
+            }
+
+            // Gửi request cập nhật số lượng
+            fetch('/cart/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: productId, size, quantity }),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload(); // Reload lại trang
+                    } else {
+                        alert('Failed to update cart. Please try again.');
+                    }
+                });
+        });
+    });
+
+    // Xử lý áp dụng mã giảm giá
+    const applyCouponButton = document.getElementById('apply-coupon');
+    applyCouponButton.addEventListener('click', () => {
+        const couponCode = document.getElementById('coupon-code').value.trim();
+
+        if (!couponCode) {
+            alert('Please enter a coupon code.');
+            return;
+        }
+
+        fetch('/cart/apply-coupon', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ coupon: couponCode }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Coupon applied successfully!');
+                    location.reload(); // Reload lại trang
+                } else {
+                    alert(data.message || 'Failed to apply coupon.');
+                }
+            });
+    });
+</script>
